@@ -15,7 +15,7 @@ failing, and produces maximally sane output in git.'
 # These tests are specific to Python 2. Write a custom script that executes
 # git-p4 directly with the Python 2 interpreter to ensure that we use that
 # version even if Git was compiled with Python 3.
-python_target_binary=$(which python2)
+python_target_binary=$(which python2 2>/dev/null)
 if test -n "$python_target_binary"
 then
 	mkdir temp_python
@@ -28,7 +28,7 @@ then
 fi
 
 git p4-python2 >err
-if ! grep 'valid commands' err
+if ! grep -q 'valid commands' err
 then
 	skip_all="skipping python2 git p4 tests; python2 not available"
 	test_done

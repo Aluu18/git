@@ -12,7 +12,6 @@ aumlcdiar=$(printf '\141\314\210')
 
 if test_have_prereq CASE_INSENSITIVE_FS
 then
-	say "will test on a case insensitive filesystem"
 	test_case=test_expect_failure
 else
 	test_case=test_expect_success
@@ -20,14 +19,10 @@ fi
 
 if test_have_prereq UTF8_NFD_TO_NFC
 then
-	say "will test on a unicode corrupting filesystem"
 	test_unicode=test_expect_failure
 else
 	test_unicode=test_expect_success
 fi
-
-test_have_prereq SYMLINKS ||
-	say "will test on a filesystem lacking symbolic links"
 
 if test_have_prereq CASE_INSENSITIVE_FS
 then
